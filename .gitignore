@@ -1,0 +1,34 @@
+# ---------------- Python Cache ----------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ---------------- Virtual Environment ----------------
+venv/
+.env/
+
+# ---------------- Large / Generated Data ----------------
+dataset/
+lfw/
+
+# ---------------- Trained Model ----------------
+trainer.yml
+
+# ---------------- Attendance CSV Files ----------------
+attendance_*.csv
+
+# ---------------- Logs ----------------
+*.log
+
+# ---------------- OS Files ----------------
+.DS_Store
+Thumbs.db
+
+# ---------------- IDE / Editor ----------------
+.vscode/
+.idea/
+
+# ---------------- Temporary Files ----------------
+*.tmp
+*.bak

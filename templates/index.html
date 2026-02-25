@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Recognition Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎯 Face Recognition Attendance System</h1>
+
+    <!-- Register Student Section -->
+    <div class="register-box">
+        <form action="{{ url_for('capture') }}" method="POST">
+            <input type="text" name="name" placeholder="Enter New Student Name" required>
+            <button type="submit" class="btn">➕ Register Student</button>
+        </form>
+    </div>
+
+    <!-- Live Camera Feed -->
+    <div class="video-box">
+        <img src="{{ url_for('video') }}" width="700">
+    </div>
+
+    <!-- Attendance Section -->
+    <h2>📋 Live Attendance</h2>
+
+    <div id="attendanceList" class="attendance-grid"></div>
+
+</div>
+
+<script>
+function loadAttendance() {
+    fetch('/attendance_data')
+        .then(response => response.json())
+        .then(data => {
+            let container = document.getElementById("attendanceList");
+            container.innerHTML = "";
+
+            data.forEach(row => {
+                let card = document.createElement("div");
+                card.className = "attendance-card";
+
+                card.innerHTML = `
+                    <div class="student-name">${row[0]}</div>
+                    <div class="badge date-badge">📅 ${row[1]}</div>
+                    <div class="badge time-badge">🕒 ${row[2]}</div>
+                `;
+
+                container.appendChild(card);
+            });
+        });
+}
+
+setInterval(loadAttendance, 2000);
+</script>
+
+</body>
+</html>
